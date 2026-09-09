@@ -13,7 +13,7 @@ public class SleepingSession {
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
 
 
-    public SleepingSession (String line) {
+    public SleepingSession(final String line) {
         String[] data = line.split(";");
 
         localDateStart = LocalDateTime.parse(data[0],dateTimeFormatter);
