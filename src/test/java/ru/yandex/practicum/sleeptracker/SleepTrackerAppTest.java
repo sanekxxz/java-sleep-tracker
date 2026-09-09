@@ -10,7 +10,7 @@ import java.util.List;
 public class SleepTrackerAppTest {
 
     @Test
-    public void SleepDurationFunctionThree() {
+    public void sleepDurationFunctionThree() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -24,8 +24,9 @@ public class SleepTrackerAppTest {
         Assertions.assertEquals(3, sleepAnalysisResult.getValue());
 
     }
+
     @Test
-    public void SleepDurationFunctionZero() {
+    public void sleepDurationFunctionZero() {
         List<SleepingSession> sessions = new ArrayList<>();
 
         SleepDurationFunction function = new SleepDurationFunction();
@@ -37,7 +38,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void MinSessionDuration410Min() {
+    public void minSessionDuration410Min() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -52,7 +53,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void MinSessionDuration90Min() {
+    public void minSessionDuration90Min() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -71,7 +72,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void MaxSessionDuration495Max() {
+    public void maxSessionDuration495Max() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -86,7 +87,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void MaxSessionDuration660Max() {
+    public void maxSessionDuration660Max() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -103,8 +104,9 @@ public class SleepTrackerAppTest {
         Assertions.assertEquals("Мах время сна", sleepAnalysisResult.getAnalysisResult());
         Assertions.assertEquals(660 + " мин.", sleepAnalysisResult.getValue());
     }
+
     @Test
-    public void AverageSessionDuration427min() {
+    public void averageSessionDuration427min() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -122,7 +124,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void AverageSessionDuration0min() {
+    public void averageSessionDuration0min() {
         List<SleepingSession> sessions = new ArrayList<>();
 
         AverageSessionDuration function = new AverageSessionDuration();
@@ -132,7 +134,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void CountSessionSleepBadThree() {
+    public void countSessionSleepBadThree() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -150,7 +152,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void CountSessionSleepBadZero() {
+    public void countSessionSleepBadZero() {
         List<SleepingSession> sessions = new ArrayList<>();
         CountSessionSleep function = new CountSessionSleep();
         SleepAnalysisResult sleepAnalysisResult = function.apply(sessions);
@@ -159,7 +161,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void SleeplessNightFive() {
+    public void sleeplessNightFive() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -177,7 +179,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void SleeplessNightZero() {
+    public void sleeplessNightZero() {
         List<SleepingSession> sessions = new ArrayList<>();
         SleeplessNight function = new SleeplessNight();
         SleepAnalysisResult sleepAnalysisResult = function.apply(sessions);
@@ -186,7 +188,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void ClassifyUserPIGEON() {
+    public void classifyUserPigeon() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:15;02.10.25 07:30;BAD"),
                 new SleepingSession("02.10.25 23:50;03.10.25 06:40;GOOD"),
@@ -204,7 +206,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void ClassifyUserOWL() {
+    public void classifyUserOwl() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:30;02.10.25 09:30;GOOD"),
                 new SleepingSession("02.10.25 23:45;03.10.25 10:00;GOOD"),
@@ -218,7 +220,7 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    public void ClassifyUserLARK() {
+    public void classifyUserLark() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 21:00;02.10.25 06:00;GOOD"),
                 new SleepingSession("02.10.25 20:30;03.10.25 05:50;GOOD"),
