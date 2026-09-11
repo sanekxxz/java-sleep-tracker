@@ -3,22 +3,20 @@ package ru.yandex.practicum.sleeptracker;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OpenFiles {
-    private final Path sleepLog = Paths.get("sleep_log.txt");
     private List<SleepingSession> sleep = new ArrayList<>();
 
     public List<SleepingSession> getSleep() {
         return sleep;
     }
 
-    public void openFile(final String fileName) {
+    public void openFile(final Path fileName) {
 
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName)) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName.toString())) {
 
             assert inputStream != null;
 

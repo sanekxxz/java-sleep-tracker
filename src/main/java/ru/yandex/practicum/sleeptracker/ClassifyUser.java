@@ -3,7 +3,9 @@ package ru.yandex.practicum.sleeptracker;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ClassifyUser implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
@@ -36,20 +38,17 @@ public class ClassifyUser implements Function<List<SleepingSession>, SleepAnalys
         int larks = 0;
         int pigeons = 0;
 
-        for (SleepingSession session : sessions) {
+        Map<Chronotype, Long> counts = sessions.stream()
+                .filter(this::isNightSleep)
+                .map(this::determineChronotype)
+                .collect(Collectors.groupingBy(
+                        chronotype -> chronotype,
+                        Collectors.counting()
+                ));
 
-            if (!isNightSleep(session)) {
-                continue;
-            }
-
-            Chronotype chronotype = determineChronotype(session);
-
-            switch (chronotype) {
-                case OWL -> owls++;
-                case LARK -> larks++;
-                case PIGEON -> pigeons++;
-            }
-        }
+        owls = counts.getOrDefault(Chronotype.OWL, 0L).intValue();
+        larks = counts.getOrDefault(Chronotype.LARK, 0L).intValue();
+        pigeons = counts.getOrDefault(Chronotype.PIGEON, 0L).intValue();
 
         if (owls > larks && owls > pigeons) {
             return Chronotype.OWL;
@@ -67,10 +66,6 @@ public class ClassifyUser implements Function<List<SleepingSession>, SleepAnalys
         LocalDateTime end = session.getLocalDateEnd();
 
         return !start.toLocalDate().equals(end.toLocalDate())
-                ||
-                (
-                        start.toLocalTime().isAfter(LocalTime.MIDNIGHT)
-                                && end.toLocalTime().isBefore(LocalTime.of(6, 0))
-                );
+                || start.toLocalTime().isBefore(LocalTime.of(6, 0));
     }
 }

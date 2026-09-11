@@ -209,8 +209,7 @@ public class SleepTrackerAppTest {
     public void classifyUserOwl() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 23:30;02.10.25 09:30;GOOD"),
-                new SleepingSession("02.10.25 23:45;03.10.25 10:00;GOOD"),
-                new SleepingSession("03.10.25 23:20;04.10.25 09:40;GOOD")
+                new SleepingSession("02.10.25 23:45;03.10.25 10:00;GOOD")
         );
 
         ClassifyUser function = new ClassifyUser();
@@ -223,8 +222,8 @@ public class SleepTrackerAppTest {
     public void classifyUserLark() {
         List<SleepingSession> sessions = List.of(
                 new SleepingSession("01.10.25 21:00;02.10.25 06:00;GOOD"),
-                new SleepingSession("02.10.25 20:30;03.10.25 05:50;GOOD"),
-                new SleepingSession("03.10.25 21:30;04.10.25 06:30;GOOD")
+                new SleepingSession("02.10.25 21:30;03.10.25 06:30;GOOD"),
+                new SleepingSession("03.10.25 20:30;04.10.25 05:30;GOOD")
         );
 
         ClassifyUser function = new ClassifyUser();

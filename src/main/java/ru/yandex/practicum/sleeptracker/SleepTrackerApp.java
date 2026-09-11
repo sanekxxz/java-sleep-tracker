@@ -1,6 +1,7 @@
 package ru.yandex.practicum.sleeptracker;
 
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -11,7 +12,14 @@ public class SleepTrackerApp {
 
 
         OpenFiles openAndCreateFiles = new OpenFiles();
-        openAndCreateFiles.openFile("sleep_log.txt");
+
+        if (args.length == 0) {
+            System.out.println("Вы не ввели путь к файлу");
+            return;
+        }
+        Path sleepLogPath = Path.of(args[0]);
+        openAndCreateFiles.openFile(sleepLogPath);
+
         List<SleepingSession> sleepingSessions = new ArrayList<>(openAndCreateFiles.getSleep());
 
         List<Function<List<SleepingSession>, SleepAnalysisResult>> functions = List.of(
